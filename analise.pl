@@ -1,4 +1,13 @@
 #!/usr/bin/perl
+
+# Translates seconds into hour:minute:seconds
+sub hms($) {
+  use integer;
+  my $sfull=@_[0];
+  my $mfull=$sfull/60;
+  my $hfull=$mfull/60;
+  return sprintf("%d:%02d:%02d",$hfull,$mfull % 60, $sfull % 60);
+};
 if($#ARGV>-1) {
    open(FD,"<$ENV{HOME}/.logactivity/logfile.".$ARGV[0]) or die "Can't open logfile.$ARGV[0]\n";
 } else {
@@ -23,6 +32,6 @@ while(<FD>) {
 
 my @a2=sort {$myhash{$a} <=> $myhash{$b} } @myarray ;
 foreach my $e (@a2) {
-  print $myhash{$e}."\t".$e."\n";
+  print $myhash{$e}."\t(".hms($myhash{$e}).")\t".$e."\n";
 };
 
