@@ -38,7 +38,7 @@ while( 1 == 1 ) {
   };
   if($yday1 != $yday) {
     close(FD);
-    rename($ENV{HOME}."/.logactivity/logfile",$ENV{HOME}."/.logactivity/logfile.".(1900+$year)."-".$mon."-".$mday1);
+    rename($ENV{HOME}."/.logactivity/logfile",$ENV{HOME}."/.logactivity/logfile.".(1900+$year)."-".(1+$mon)."-".$mday);
     $mon=$mon1;
     $year=$year1;
     $yday=$yday1;
